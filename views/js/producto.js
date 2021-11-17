@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     $('#btn').click(function(e) {
-        alert("Guardar...")
         var file_data = $("#imagen").prop("files")[0];
         var name = $("#name").val();
         var stock = $("#stock").val();
@@ -22,7 +21,6 @@ $(document).ready(function() {
             data: form_data,
             type: 'post',
             success: function(response) {
-                alert(response)
                 var resp = JSON.parse(response);
                 if (resp.code == '200') {
                     $('.message').html('<p class="success">' + resp.message + '</p>');
@@ -71,7 +69,6 @@ $(document).ready(function() {
 });
 
 function data() {
-    alert("Respuesta");
     var form_data = new FormData();
     form_data.append("action", "RDS");
     $.ajax({
@@ -82,7 +79,6 @@ function data() {
         contentType: false,
         type: 'post',
         success: function(response) {
-            alert(response);
             $('#documents > tbody:last-child').append(response);
         }
     });
@@ -151,7 +147,6 @@ function select() {
 }
 
 function validate() {
-    alert("sadas")
     var productos = $("#productos").val();
     $('#btnEdit').hide();
     if (productos != undefined) {
