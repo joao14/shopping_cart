@@ -1,16 +1,20 @@
 $(document).ready(function() {
 
     $('#btn').click(function(e) {
-        var file_data = $("#document").prop("files")[0];
-        var descripcion = $("#descripcion").val();
-        var area = $("#areas").children("option:selected").val();
+        alert("Guardar...")
+        var file_data = $("#imagen").prop("files")[0];
+        var name = $("#name").val();
+        var stock = $("#stock").val();
+        var price = $("#price").val();
         var form_data = new FormData();
         form_data.append("file", file_data);
-        form_data.append("descripcion", descripcion);
-        form_data.append("area", area);
+        form_data.append("name", name);
+        form_data.append("stock", stock);
+        form_data.append("price", price);
+        form_data.append("description", description);
         form_data.append("action", "S");
         $.ajax({
-            url: "../controllers/documento.php",
+            url: "../controllers/producto.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -18,10 +22,11 @@ $(document).ready(function() {
             data: form_data,
             type: 'post',
             success: function(response) {
+                alert(response)
                 var resp = JSON.parse(response);
                 if (resp.code == '200') {
                     $('.message').html('<p class="success">' + resp.message + '</p>');
-                    $('#documentacion').trigger("reset");
+                    $('#productos').trigger("reset");
                 } else {
                     $('.success').hide();
                     $('.error').show();
@@ -33,16 +38,16 @@ $(document).ready(function() {
     });
 
     $('#btnEdit').click(function(e) {
-        var documento = $("#documento").val();
+        var productos = $("#productos").val();
         var estado = $("#estados").children("option:selected").val();
         var observacion = $("#observacion").val();
         var form_data = new FormData();
-        form_data.append("documento", documento);
+        form_data.append("productos", productos);
         form_data.append("estado", estado);
         form_data.append("observacion", observacion);
         form_data.append("action", "E");
         $.ajax({
-            url: "../controllers/documento.php",
+            url: "../controllers/producto.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -66,16 +71,18 @@ $(document).ready(function() {
 });
 
 function data() {
+    alert("Respuesta");
     var form_data = new FormData();
     form_data.append("action", "RDS");
     $.ajax({
-        url: "../controllers/documento.php",
+        url: "../controllers/producto.php",
         dataType: 'text',
         data: form_data,
         processData: false,
         contentType: false,
         type: 'post',
         success: function(response) {
+            alert(response);
             $('#documents > tbody:last-child').append(response);
         }
     });
@@ -114,12 +121,12 @@ function estados() {
 }
 
 function select() {
-    var documento = $("#documento").val();
+    var productos = $("#productos").val();
     var form_data = new FormData();
-    form_data.append("documento", documento);
+    form_data.append("productos", productos);
     form_data.append("action", "R");
     $.ajax({
-        url: "../controllers/documento.php",
+        url: "../controllers/producto.php",
         dataType: 'text',
         data: form_data,
         processData: false,
@@ -144,9 +151,11 @@ function select() {
 }
 
 function validate() {
-    var documento = $("#documento").val();
+    alert("sadas")
+    var productos = $("#productos").val();
     $('#btnEdit').hide();
-    if (documento != undefined) {
+    if (productos != undefined) {
+        console.log("......")
         $("#descripcion").prop('disabled', true);
         $("#areas").prop('disabled', true);
         $('#btn').hide();

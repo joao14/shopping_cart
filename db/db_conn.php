@@ -6,7 +6,7 @@ class Conectar{
         $dbhost = "localhost";
         $dbuser = "root";  
         $dbpass = "";    
-        $db = "plataforma_admin"; 
+        $db = "shopping_cart"; 
         $conn=new mysqli($dbhost, $dbuser, $dbpass, $db);
         $conn->query("SET NAMES 'utf8'");
         return $conn;

@@ -22,28 +22,30 @@ CREATE TABLE usuarios (
     FOREIGN KEY (id_perfil) REFERENCES perfiles(id_perfil)
 );
 
-DROP TABLE IF EXISTS documentos;
-CREATE TABLE documentos (
-    id_documento BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100),    
-    documento BLOB,
-    descripcion VARCHAR(250),
-    mime VARCHAR(50),
-    observacion VARCHAR(250) NULL,
+DROP TABLE IF EXISTS producto;
+CREATE TABLE producto (
+    id_producto BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),    
+    stock DECIMAL(8,4),
+    price DECIMAL(8,4),
+    image BLOB,
     created_at TIMESTAMP NULL,
-    updated_at TIMESTAMP NULL,   
-    id_usuario BIGINT UNSIGNED,
-    id_estado BIGINT UNSIGNED,
-    id_area BIGINT UNSIGNED,
-    FOREIGN KEY (id_usuario) references usuarios(id_usuario)
+    updated_at TIMESTAMP NULL
 );
 
-DROP TABLE IF EXISTS areas;
-CREATE TABLE areas (
-    id_area BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100),
-    descripcion VARCHAR(100)
+DROP TABLE IF EXISTS venta;
+CREATE TABLE venta (
+    id_venta BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    sobtotal DECIMAL(8,4),    
+    iva DECIMAL(8,4),
+    total DECIMAL(8,4),
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,   
+    id_producto BIGINT,
+    id_estado BIGINT,
+    id_usuario BIGINT
 );
+
 
 DROP TABLE IF EXISTS estados;
 CREATE TABLE estados (

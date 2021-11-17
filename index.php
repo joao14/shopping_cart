@@ -4,7 +4,7 @@
 <head>
 	<title>Shopping Car</title>
 	<link rel="stylesheet" type="text/css" href="views/css/style.css">
-	<link rel="icon" href="https://img.icons8.com/fluency/48/000000/link.png" type="image/x-icon">
+	<link rel="icon" href="views/img/car.png" type="image/x-icon">
 </head> 
   
 <body>
